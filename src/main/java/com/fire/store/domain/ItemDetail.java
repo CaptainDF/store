@@ -1,4 +1,4 @@
 package com.fire.store.domain;
 
-public class Item {
+public class ItemDetail {
 }

@@ -2,12 +2,12 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    #url: jdbc:mysql://rm-bp12814g72d57803qo.mysql.rds.aliyuncs.com:3306/monitor_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true
-    #username: monitor_test
-    #password: Monitor_test
-    url: jdbc:mysql://localhost:3306/monitor_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    url: jdbc:mysql://gz-cdb-8icjatc6.sql.tencentcdb.com:62793/store?useUnicode=true&characterEncoding=utf8&autoReconnect=true
     username: root
-    password: 123456
+    password: jetsum@2018
+    #url: jdbc:mysql://localhost:3306/monitor_test?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    #username: root
+    #password: 123456
     initialSize: 1
     minIdle: 3
     maxActive: 5
