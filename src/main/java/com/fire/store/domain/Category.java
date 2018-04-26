@@ -5,7 +5,9 @@ package com.fire.store.domain;
  */
 public class Category {
 
+    //id
     private int id;
+    //分类名称
     private String name;
 
     public int getId() {
