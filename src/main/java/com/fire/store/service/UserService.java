@@ -13,19 +13,10 @@ public interface UserService {
 
     int update(User user);
 
-    User get(int id);
-
-    void deleteById(int id);
-
     /**
      * 获取所有用户
      */
     List getAllUsers();
-
-    /**
-     * 删除所有用户
-     */
-    void deleteAllUser();
 
     User findUserById(int id);
 }

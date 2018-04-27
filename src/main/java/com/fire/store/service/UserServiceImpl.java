@@ -5,7 +5,9 @@ import com.fire.store.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by DZA on 2018/4/27.
@@ -28,28 +30,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(int id) {
-        return userDao.get(id);
-    }
-
-
-    @Override
-    public void deleteById(int id) {
-
-    }
-
-    @Override
     public List getAllUsers() {
-        return null;
+        Map m = new HashMap<String,Object>(16);
+        return userDao.list(m);
     }
 
-    @Override
-    public void deleteAllUser() {
-
-    }
 
     @Override
     public User findUserById(int id) {
-        return null;
+        return userDao.get(id);
     }
 }

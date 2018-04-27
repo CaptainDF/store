@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 /**
  * Created by DZA on 2018/4/27.
  */
@@ -23,7 +25,10 @@ public class UserTest {
 //        u.setUsername("jack");
 //        u.setPassword("123");
 //        u.setEmail("12345@123.com");
-        User user = userService.get(1);
-        System.out.println(user);
+//        User user = userService.findUserById(1);
+//        System.out.println(user);
+
+        List list = userService.getAllUsers();
+        System.out.println(list.size());
     }
 }
