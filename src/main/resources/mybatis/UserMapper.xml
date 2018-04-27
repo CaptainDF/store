@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fire.store.dao.UserDao">
+
+    <select id="get" resultType="com.fire.store.domain.User">
+		select a.`id`,a.`username`,a.`password`,a.`fullname`,a.`email`,a.`telephone`,a.`birthday`,a.`sex`,a.`state`
+		from user a
+		where a.id = #{value}
+	</select>
+
+    <select id="list" resultType="com.fire.store.domain.User">
+        SELECT
+        a.`id`,a.`username`,a.`password`,a.`fullname`,a.`email`,a.`telephone`,a.`birthday`,a.`sex`,a.`state`
+        FROM user a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="username != null and username != ''">and a.username = #{username}</if>
+            <if test="password != null and password != ''">and a.password = #{password}</if>
+            <if test="fullname != null and fullname != ''">and a.fullname = #{fullname}</if>
+            <if test="email != null and email != ''">and a.email = #{email}</if>
+            <if test="telephone != null and telephone != ''">and a.telephone = #{telephone}</if>
+            <if test="birthday != null and birthday != ''">and a.birthday = #{birthday}</if>
+            <if test="sex != null and sex != ''">and a.sex = #{sex}</if>
+            <if test="state != null and state != ''">and a.state = #{state}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by a.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1) from user a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="username != null and username != ''">and a.username = #{username}</if>
+            <if test="password != null and password != ''">and a.password = #{password}</if>
+            <if test="fullname != null and fullname != ''">and a.fullname = #{fullname}</if>
+            <if test="email != null and email != ''">and a.email = #{email}</if>
+            <if test="telephone != null and telephone != ''">and a.telephone = #{telephone}</if>
+            <if test="birthday != null and birthday != ''">and a.birthday = #{birthday}</if>
+            <if test="sex != null and sex != ''">and a.sex = #{sex}</if>
+            <if test="state != null and state != ''">and a.state = #{state}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.fire.store.domain.User"
+            useGeneratedKeys="true" keyProperty="id">
+		insert into user
+		(
+		`username`,
+		`password`,
+		`fullname`,
+		`email`,
+		`telephone`,
+		`birthday`,
+		`sex`,
+		`state`
+		)
+		values
+		(
+		#{username},
+		#{password},
+		#{fullname},
+		#{email},
+		#{telephone},
+		#{birthday},
+		#{sex},
+		#{state}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.fire.store.domain.User">
+        update user
+        <set>
+            <if test="username != null">`username` = #{username}, </if>
+            <if test="password != null">`password` = #{password}, </if>
+            <if test="fullname != null">`fullname` = #{fullname}, </if>
+            <if test="email != null">`email` = #{email}, </if>
+            <if test="telephone != null">`telephone` = #{telephone}, </if>
+            <if test="birthday != null">`birthday` = #{birthday}, </if>
+            <if test="sex != null">`sex` = #{sex}, </if>
+            <if test="state != null">`state` = #{state}, </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

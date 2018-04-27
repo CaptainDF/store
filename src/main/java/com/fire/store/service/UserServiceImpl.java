@@ -1,10 +1,8 @@
 package com.fire.store.service;
 
 import com.fire.store.dao.UserDao;
-import com.fire.store.dao.UserDaoImpl;
 import com.fire.store.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +18,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void create(int id, String name, String password) {
-        userDao.create(name,password);
+    public void save(User user) {
+        userDao.save(user);
     }
+
+    @Override
+    public int update(User user) {
+        return userDao.update(user);
+    }
+
+    @Override
+    public User get(int id) {
+        return userDao.get(id);
+    }
+
 
     @Override
     public void deleteById(int id) {

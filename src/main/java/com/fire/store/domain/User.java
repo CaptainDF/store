@@ -10,7 +10,6 @@ public class User {
     private String birthday;
     private String sex;
     private int state;
-    private String code;
 
     public int getId() {
         return id;
@@ -84,14 +83,6 @@ public class User {
         this.state = state;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -104,7 +95,6 @@ public class User {
                 ", birthday='" + birthday + '\'' +
                 ", sex='" + sex + '\'' +
                 ", state=" + state +
-                ", code='" + code + '\'' +
                 '}';
     }
 }

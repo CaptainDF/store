@@ -1,5 +1,6 @@
 package com.fire.store;
 
+import com.fire.store.domain.User;
 import com.fire.store.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +19,11 @@ public class UserTest {
 
     @Test
     public void test(){
-        userService.create(1,"name","password");
+//        User u = new User();
+//        u.setUsername("jack");
+//        u.setPassword("123");
+//        u.setEmail("12345@123.com");
+        User user = userService.get(1);
+        System.out.println(user);
     }
 }
