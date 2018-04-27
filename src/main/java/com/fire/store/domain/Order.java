@@ -4,7 +4,9 @@ public class Order {
     private String id;
     private int count;
     private double subtotal;
+    //商品id
     private String itemId;
+    //所属订单号
     private String orderId;
 
     public String getId() {
