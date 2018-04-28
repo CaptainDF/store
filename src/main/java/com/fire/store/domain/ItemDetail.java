@@ -9,7 +9,7 @@ public class ItemDetail {
     private String date;
     private String desc;
     private String flag;
-    private String cid;
+    private int cid;
 
     public String getId() {
         return id;
@@ -75,11 +75,11 @@ public class ItemDetail {
         this.flag = flag;
     }
 
-    public String getCid() {
+    public int getCid() {
         return cid;
     }
 
-    public void setCid(String cid) {
+    public void setCid(int cid) {
         this.cid = cid;
     }
 
@@ -94,7 +94,7 @@ public class ItemDetail {
                 ", date='" + date + '\'' +
                 ", desc='" + desc + '\'' +
                 ", flag='" + flag + '\'' +
-                ", cid='" + cid + '\'' +
+                ", cid=" + cid +
                 '}';
     }
 }

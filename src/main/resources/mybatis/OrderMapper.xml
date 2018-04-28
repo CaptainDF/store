@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fire.store.dao.OrderDao">
+
+    <select id="get" resultType="com.fire.store.domain.Order">
+		select a.`id`,a.`count`,a.`subtotal`,a.`item_id`,a.`order_id`
+		from order a
+		where a.id = #{value}
+	</select>
+
+    <select id="list" resultType="com.fire.store.domain.Order">
+        SELECT
+        a.`id`,a.`count`,a.`subtotal`,a.`item_id`,a.`order_id`
+        FROM order a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="count != null and count != ''">and a.count = #{count}</if>
+            <if test="subtotal != null and subtotal != ''">and a.subtotal = #{subtotal}</if>
+            <if test="item_id != null and item_id != ''">and a.item_id = #{item_id}</if>
+            <if test="order_id != null and order_id != ''">and a.order_id = #{order_id}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by a.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1) from order a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="count != null and count != ''">and a.count = #{count}</if>
+            <if test="subtotal != null and subtotal != ''">and a.subtotal = #{subtotal}</if>
+            <if test="item_id != null and item_id != ''">and a.item_id = #{item_id}</if>
+            <if test="order_id != null and order_id != ''">and a.order_id = #{order_id}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.fire.store.domain.Order"
+            useGeneratedKeys="true" keyProperty="id">
+		insert into order
+		(
+		`count`,
+		`subtotal`,
+		`item_id`,
+		`order_id`
+		)
+		values
+		(
+		#{count},
+		#{subtotal},
+		#{item_id},
+		#{order_id}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.fire.store.domain.Order">
+        update order
+        <set>
+            <if test="count != null">`count` = #{count}, </if>
+            <if test="subtotal != null">`subtotal` = #{subtotal}, </if>
+            <if test="item_id != null">`item_id` = #{item_id}, </if>
+            <if test="order_id != null">`order_id` = #{order_id}, </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
