@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fire.store.dao.ItemDetailDao">
+
+    <select id="get" resultType="com.fire.store.domain.ItemDetail">
+		select a.`id`,a.`name`,a.`marketPrice`,a.`shopPrice`,a.`image`,a.`date`,a.`desc`,a.`flag`,a.`cid`
+		from itemdetail a
+		where a.id = #{value}
+	</select>
+
+    <select id="list" resultType="com.fire.store.domain.ItemDetail">
+        SELECT
+        a.`id`,a.`name`,a.`marketPrice`,a.`shopPrice`,a.`image`,a.`date`,a.`desc`,a.`flag`,a.`cid`
+        FROM itemdetail a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="name != null and name != ''">and a.name = #{name}</if>
+            <if test="marketPrice != null and marketPrice != ''">and a.marketPrice = #{marketPrice}</if>
+            <if test="shopPrice != null and shopPrice != ''">and a.shopPrice = #{shopPrice}</if>
+            <if test="image != null and image != ''">and a.image = #{image}</if>
+            <if test="date != null and date != ''">and a.date = #{date}</if>
+            <if test="desc != null and desc != ''">and a.desc = #{desc}</if>
+            <if test="flag != null and flag != ''">and a.flag = #{flag}</if>
+            <if test="cid != null and cid != ''">and a.cid = #{cid}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by a.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1) from itemdetail a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="name != null and name != ''">and a.name = #{name}</if>
+            <if test="marketPrice != null and marketPrice != ''">and a.marketPrice = #{marketPrice}</if>
+            <if test="shopPrice != null and shopPrice != ''">and a.shopPrice = #{shopPrice}</if>
+            <if test="image != null and image != ''">and a.image = #{image}</if>
+            <if test="date != null and date != ''">and a.date = #{date}</if>
+            <if test="desc != null and desc != ''">and a.desc = #{desc}</if>
+            <if test="flag != null and flag != ''">and a.flag = #{flag}</if>
+            <if test="cid != null and cid != ''">and a.cid = #{cid}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.fire.store.domain.ItemDetail"
+            useGeneratedKeys="true" keyProperty="id">
+		insert into itemdetail
+		(
+		`name`,
+		`marketPrice`,
+		`shopPrice`,
+		`image`,
+		`date`,
+		`desc`,
+		`flag`,
+		`cid`
+		)
+		values
+		(
+		#{name},
+		#{marketPrice},
+		#{shopPrice},
+		#{image},
+		#{date},
+		#{desc},
+		#{flag},
+		#{cid}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.fire.store.domain.ItemDetail">
+        update itemdetail
+        <set>
+            <if test="name != null">`name` = #{name}, </if>
+            <if test="marketPrice != null">`marketPrice` = #{marketPrice}, </if>
+            <if test="shopPrice != null">`shopPrice` = #{shopPrice}, </if>
+            <if test="image != null">`image` = #{image}, </if>
+            <if test="date != null">`date` = #{date}, </if>
+            <if test="desc != null">`desc` = #{desc}, </if>
+            <if test="flag != null">`flag` = #{flag}, </if>
+            <if test="cid != null">`cid` = #{cid}, </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

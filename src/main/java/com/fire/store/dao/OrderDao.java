@@ -17,7 +17,7 @@ public interface OrderDao {
 
     int update(Order order);
 
-    User get(int id);
+    Order get(int id);
 
     List<Order> list(Map<String, Object> map);
 

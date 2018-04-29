@@ -19,5 +19,5 @@ public interface OrderService {
      */
     List getAllOrders();
 
-    User findOrderById(int id);
+    Order findOrderById(int id);
 }

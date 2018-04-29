@@ -1,6 +1,6 @@
 package com.fire.store.dao;
 
-import com.fire.store.domain.Category;
+import com.fire.store.domain.ItemDetail;
 import com.fire.store.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,15 +11,15 @@ import java.util.Map;
  * Created by DZA on 2018/4/27.
  */
 @Mapper
-public interface CategoryDao {
+public interface ItemDetailDao {
 
-    void save(Category category);
+    void save(ItemDetail itemDetail);
 
-    int update(Category category);
+    int update(ItemDetail itemDetail);
 
-    Category get(int id);
+    ItemDetail get(int id);
 
-    List<Category> list(Map<String, Object> map);
+    List<ItemDetail> list(Map<String, Object> map);
 
     int count(Map<String, Object> map);
 }

@@ -14,10 +14,7 @@ public interface CategoryService {
 
     int update(Category category);
 
-    /**
-     * 获取所有用户
-     */
     List getAllCategory();
 
-    User findCategoryById(int id);
+    Category findCategoryById(int id);
 }
