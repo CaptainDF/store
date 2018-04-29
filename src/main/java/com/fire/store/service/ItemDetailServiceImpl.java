@@ -3,11 +3,13 @@ package com.fire.store.service;
 import com.fire.store.dao.ItemDetailDao;
 import com.fire.store.domain.ItemDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class ItemDetailServiceImpl implements ItemDetailService {
 
     @Autowired

@@ -3,11 +3,13 @@ package com.fire.store.service;
 import com.fire.store.dao.CategoryDao;
 import com.fire.store.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired

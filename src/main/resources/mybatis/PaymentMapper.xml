@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fire.store.dao.PaymentDao">
+
+    <select id="get" resultType="com.fire.store.domain.Payment">
+		select a.`id`,a.`ordertime`,a.`total`,a.`state`,a.`name`,a.`address`,a.`telephone`,a.`user_id`
+		from payment a
+		where a.id = #{value}
+	</select>
+
+    <select id="list" resultType="com.fire.store.domain.Payment">
+        SELECT
+        a.`id`,a.`ordertime`,a.`total`,a.`state`,a.`name`,a.`address`,a.`telephone`,a.`user_id`
+        FROM payment a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="ordertime != null and ordertime != ''">and a.ordertime = #{ordertime}</if>
+            <if test="total != null and total != ''">and a.total = #{total}</if>
+            <if test="state != null and state != ''">and a.state = #{state}</if>
+            <if test="name != null and name != ''">and a.name = #{name}</if>
+            <if test="address != null and address != ''">and a.address = #{address}</if>
+            <if test="telephone != null and telephone != ''">and a.telephone = #{telephone}</if>
+            <if test="userId != null and userId != ''">and a.user_id = #{userId}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by a.id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1) from payment a
+        <where>
+            <if test="id != null and id != ''">and a.id = #{id}</if>
+            <if test="ordertime != null and ordertime != ''">and a.ordertime = #{ordertime}</if>
+            <if test="total != null and total != ''">and a.total = #{total}</if>
+            <if test="state != null and state != ''">and a.state = #{state}</if>
+            <if test="name != null and name != ''">and a.name = #{name}</if>
+            <if test="address != null and address != ''">and a.address = #{address}</if>
+            <if test="telephone != null and telephone != ''">and a.telephone = #{telephone}</if>
+            <if test="userId != null and userId != ''">and a.user_id = #{userId}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.fire.store.domain.Payment"
+            useGeneratedKeys="true" keyProperty="id">
+		insert into payment
+		(
+		`ordertime`,
+		`total`,
+		`state`,
+		`name`,
+		`address`,
+		`telephone`,
+		`user_id`
+		)
+		values
+		(
+		#{ordertime},
+		#{total},
+		#{state},
+		#{name},
+		#{address},
+		#{telephone},
+		#{userId}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.fire.store.domain.Payment">
+        update payment
+        <set>
+            <if test="ordertime != null">`ordertime` = #{ordertime}, </if>
+            <if test="total != null">`total` = #{total}, </if>
+            <if test="state != null">`state` = #{state}, </if>
+            <if test="name != null">`name` = #{name}, </if>
+            <if test="address != null">`address` = #{address}, </if>
+            <if test="telephone != null">`telephone` = #{telephone}, </if>
+            <if test="userId != null">`user_id` = #{userId}, </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
